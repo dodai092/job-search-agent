@@ -1,0 +1,31 @@
+# Hard filters for the job search agent.
+# Applied before any LLM fit-scoring call — see SPEC.md "Matching" section.
+
+target_roles:
+  - AI Developer
+  - AI Automation Engineer
+  - AI Consultant
+  - Web Developer (with an AI/automation component)
+
+seniority:
+  include: [mid, senior]
+  exclude: [junior, internship]
+
+location:
+  remote_only: true
+  timezone_compatible_with: Croatia/EU
+  # "Remote" and "hireable while residing in Croatia" are different things —
+  # a posting can be remote-only within the US, or require EU work
+  # authorization only, and still exclude Croatia specifically. Don't infer
+  # eligibility from a "remote" label; check the posting's stated geographic/
+  # work-authorization restriction. If unstated, mark unknown, don't assume.
+  must_allow_hire_from: Croatia
+
+salary_floor: null # not set
+
+employment_type:
+  include: [full_time, contract, freelance]
+
+exclude:
+  - recruiting/staffing agency reposts (vs. direct employer listings)
+  - junior/internship-level roles
